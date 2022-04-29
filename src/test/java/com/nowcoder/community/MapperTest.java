@@ -83,4 +83,5 @@ public class MapperTest {
         int rows = discussPostMapper.selectDiscussPostRows(0);
         System.out.println(rows);
     }
+
 }
