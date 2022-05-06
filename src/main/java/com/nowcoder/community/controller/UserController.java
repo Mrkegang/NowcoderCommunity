@@ -113,4 +113,9 @@ public class UserController {
             LOGGER.error("读取头像失败：" + e.getMessage());
         }
     }
+
+    @RequestMapping(path = "")
+    public void modifyPassword(String password) {
+
+    }
 }
