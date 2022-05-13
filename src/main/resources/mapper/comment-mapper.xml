@@ -12,26 +12,32 @@
     </sql>
 
     <select id="selectCommentsByEntity" resultType="Comment">
-        select <include refid="selectFields"></include>
-        from comment
-        where status = 0
-        and entity_type = #{entityType}
-        and entity_id = #{entityId}
-        order by create_time asc
-        limit #{offset}, #{limit}
+        SELECT <include refid="selectFields"></include>
+        FROM comment
+        WHERE status = 0
+        AND entity_type = #{entityType}
+        AND entity_id = #{entityId}
+        ORDER BY create_time ASC
+        LIMIT #{offset}, #{limit}
     </select>
 
     <select id="selectCountByEntity" resultType="int">
-        select count(id)
-        from comment
-        where status = 0
-        and entity_type = #{entityType}
-        and entity_id = #{entityId}
+        SELECT count(id)
+        FROM comment
+        WHERE status = 0
+        AND entity_type = #{entityType}
+        AND entity_id = #{entityId}
     </select>
 
     <insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="id">
-        insert into comment(<include refid="insertFields"></include>)
-        values (#{userId}, #{entityType}, #{entityId}, #{targetId}, #{content}, #{status}, #{createTime})
+        INSERT INTO comment(<include refid="insertFields"></include>)
+        VALUES (#{userId}, #{entityType}, #{entityId}, #{targetId}, #{content}, #{status}, #{createTime})
     </insert>
+
+    <select id="selectCommentById" resultType="Comment">
+        SELECT <include refid="selectFields"></include>
+        FROM comment
+        where id = #{id}
+    </select>
 
 </mapper>
