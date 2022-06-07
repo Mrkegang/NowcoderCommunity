@@ -1,5 +1,7 @@
 package com.nowcoder.community.entity;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.Date;
 
 /**
@@ -9,6 +11,7 @@ import java.util.Date;
  */
 public class DiscussPost {
 
+    @Id
     private int id;
     private int userId;
     private String title;
