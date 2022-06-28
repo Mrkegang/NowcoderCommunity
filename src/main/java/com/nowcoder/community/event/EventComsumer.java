@@ -205,7 +205,7 @@ public class EventComsumer implements CommunityConstant {
                 return;
             }
             // 上传图片失败
-            if (uploadTimes >= 5) {
+            if (uploadTimes >= 10) {
                 LOGGER.error("上传次数过多，终止任务：" + fileName);
                 future.cancel(true);
                 return;
