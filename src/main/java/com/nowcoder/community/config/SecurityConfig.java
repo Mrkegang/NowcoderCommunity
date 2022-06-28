@@ -2,6 +2,7 @@ package com.nowcoder.community.config;
 
 import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.CommunityUtil;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -102,4 +105,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
         // 覆盖它默认的逻辑，才能执行我们自己的退出代码。
         http.logout().logoutUrl("/securitylogout");
     }
+
+    /**
+     * 配置地址栏不能识别 // 的情况
+     * @return
+     */
+//    @Bean
+//    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+//        StrictHttpFirewall firewall = new StrictHttpFirewall();
+//        //此处可添加别的规则,目前只设置 允许双 //
+//        firewall.setAllowUrlEncodedDoubleSlash(true);
+//        return firewall;
+//    }
+
 }

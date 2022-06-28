@@ -1,0 +1,44 @@
+package com.nowcoder.community.config;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.PostConstruct;
+import java.io.File;
+
+
+/**
+ * @author kg
+ * @version 1.0
+ * @date 2022/6/27 15:22
+ */
+@Configuration
+public class WkConfig {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(WkConfig.class);
+
+    @Value("${wk.image.storage}")
+    private String wkImageStorage;
+
+    @Value("${wk.pdf.storage}")
+    private String wkPdfStorage;
+
+    @PostConstruct
+    public void init() {
+        // 创建WK图片目录
+        File file = new File(wkImageStorage);
+        if (!file.exists()) {
+            file.mkdir();
+            LOGGER.info("创建WK图片目录：" + wkImageStorage);
+        }
+
+        // 创建WKPDF目录
+        File file2 = new File(wkPdfStorage);
+        if (!file2.exists()) {
+            file2.mkdir();
+            LOGGER.info("创建WKPDF目录：" + wkPdfStorage);
+        }
+    }
+}
